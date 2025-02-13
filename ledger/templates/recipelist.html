@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Recipe List{% endblock %}
+
+{% block content %}
+    <section>
+        <header>
+            <h2>Our Recipes</h2>
+        </header>
+        <nav>
+            <ul>
+                {% for recipe in recipes %}
+                    <li>
+                        <a href="{{ recipe.link }}" title="View {{ recipe.name }}">
+                            {{ recipe.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </section>
+{% endblock %}
