@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Recipe Details</h2>
+    {% if user.is_authenticated %}
+        <h3>{{ recipe.title }}</h3>
+        <p><strong>Author:</strong> {{ recipe.author }}</p>
+        <p><strong>Created On:</strong> {{ recipe.created_on }}</p>
+        <p><strong>Ingredients:</strong></p>
+        <ul>
+            {% for recipe_ingredient in recipe.recipeingredient_set.all %}
+            <li>{{ recipe_ingredient.quantity }} of {{ recipe_ingredient.ingredient.name }}</li>
+            {% empty %}
+            <li>No ingredients listed.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'ledger:recipe_list' %}">
+            <button>Return to Recipe List</button>
+        </a>
+    {% else %}
+        <p>You need to <a href="{% url 'ledger:login' %}">login</a> to view this page.</p>
+    {% endif %}
+{% endblock %}
